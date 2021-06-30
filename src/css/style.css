@@ -1,0 +1,17 @@
+.canvas {
+    border: 1px black solid;
+    width: 500px;
+    height: 500px;
+}
+
+.body {
+    display: flex;
+    margin: 100px;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    margin-left: 60px;
+    width: 300px;
+}
