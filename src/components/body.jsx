@@ -21,7 +21,7 @@ const Body = () => {
                 setGravity={setGravity}
                 setHeight={setHeight} />
         </div>
-    )
-}
+    );
+};
 
 export default Body;

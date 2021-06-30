@@ -25,7 +25,6 @@ const Settings = ({ length, gravity, height, setLength, setGravity, setHeight })
                 type='range'
                 value={gravity}
                 onChange={(e) => { setGravity(e.target.value) }} />
-
             <label htmlFor='height'>
                 Высота:
             </label>
@@ -38,7 +37,7 @@ const Settings = ({ length, gravity, height, setLength, setGravity, setHeight })
                 value={height / Math.PI}
                 onChange={(e) => { setHeight(Math.PI * e.target.value) }} />
         </div>
-    )
-}
+    );
+};
 
 export default Settings;

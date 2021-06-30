@@ -2,7 +2,8 @@
 function Simulator(canv, length, gravity, startAngle) {
     this.canvas = canv.current;
     this.ctx = this.canvas.getContext('2d');
-    this.prevTimestamp = 0
+    this.prevTimestamp = 0;
+    this.deltaT = 16
     const setParams = (length, gravity, startAngle) => {
         this.length = length;
         this.gravity = gravity;
@@ -13,19 +14,22 @@ function Simulator(canv, length, gravity, startAngle) {
     }
 
     const start = () => {
-        window.requestAnimationFrame(draw);
-    }
+        this.interval = setInterval(draw, this.deltaT);
+    };
 
-    const draw = (timestamp) => {
+    const destroy = () => {
+        if (this.interval) {
+            clearInterval(this.interval);
+        };
+    };
+
+    const draw = () => {
         let acceleration = this.k * Math.sin(this.angle);
-        let deltaT = (timestamp - this.prevTimestamp) / 1000;
-        this.prevTimestamp = timestamp;
-        this.speed += acceleration * deltaT;
-        this.angle += this.speed * deltaT;
-        console.log(timestamp)
+        let deltaTsec = this.deltaT / 1000;
+        this.speed += acceleration * deltaTsec;
+        this.angle += this.speed * deltaTsec;
         build(this.angle);
-        window.requestAnimationFrame(draw);
-    }
+    };
 
     const build = (angle) => {
         let size = Math.min(this.canvas.width, this.canvas.height);
@@ -50,9 +54,10 @@ function Simulator(canv, length, gravity, startAngle) {
 
     return {
         start,
-        setParams
-    }
-}
+        setParams,
+        destroy
+    };
+};
 
 
 export default Simulator;
