@@ -1,13 +1,21 @@
 import React, { useRef, useEffect } from 'react'
-import drow from '@/functions/canvas.js';
+import Simulator from '@/functions/canvas.js';
 
 const Canvas = ({ length, gravity, height }) => {
     const canvas = useRef(null);
-    const int = useRef(null);
+    const simulator = useRef(null);
+
     useEffect(() => {
-        clearInterval(int.current)
-        drow(canvas, int, length, gravity, height, 10)
+        if (simulator.current) {
+            simulator.current.setParams(length, gravity, height)
+        }
     }, [length, gravity, height])
+
+    useEffect(() => {
+        simulator.current = new Simulator(canvas, length, gravity, height);
+        simulator.current.start();
+    }, [])
+
     return (
         <canvas className='canvas'
             ref={canvas}
