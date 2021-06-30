@@ -4,7 +4,7 @@ const Settings = ({ length, gravity, height, setLength, setGravity, setHeight })
     return (
         <div className='settings'>
             <label htmlFor='length'>
-                Длинна подвески:
+                Длина подвески:
             </label>
             <input
                 step='any'

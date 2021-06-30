@@ -1,4 +1,4 @@
-const drow = (canv, int, length, gravity, angle0, tstep) => {
+const drow = (canv, int, length, gravity, angle0, step) => {
     const canvas = canv.current;
     const ctx = canvas.getContext('2d');
     let prev = 0;
@@ -13,7 +13,7 @@ const drow = (canv, int, length, gravity, angle0, tstep) => {
             speed += acceleration * sec;
             angle += speed * sec;
             callback(angle);
-        }, tstep);
+        }, step);
     }
 
     const build = (angle) => {
@@ -37,7 +37,7 @@ const drow = (canv, int, length, gravity, angle0, tstep) => {
         prev = angle;
     }
 
-    int.current = start(length, gravity, angle0, tstep, build)
+    int.current = start(length, gravity, angle0, step, build)
 
 }
 
